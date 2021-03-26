@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     var counter:Int = 0
 
@@ -13,16 +13,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         txv.text = counter.toString()
+
+        txv.setOnClickListener(this)
+        btn.setOnClickListener(this)
+        btn2.setOnClickListener(this)
+        btn3.setOnClickListener(this)
     }
 
 
-    fun Add(v:View){
-        //if (v.id == R.id.btn){
-        if (v ==  btn){
+
+    override fun onClick(v: View?) {
+        if ( v==txv || v==btn){
             counter++
         }
-        else{
+        else if(v==btn2){
             counter += 2
+        }
+        else{
+            counter=0
         }
         txv.text = counter.toString()
     }
